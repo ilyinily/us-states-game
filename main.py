@@ -12,8 +12,8 @@ screen.bgpic(picname="./blank_states_img.gif")
 dataset = pd.read_csv("./50_states.csv")
 
 # Formatting the state names to lowercase for convenience
-for i in range(len(dataset['state'])):
-    dataset['state'][i] = dataset['state'][i].lower()
+# for i in range(len(dataset['state'])):
+#     dataset['state'][i] = dataset['state'][i].lower()
 
 correct_answers = set()
 misses = set()
@@ -21,14 +21,14 @@ misses = set()
 game_continues = True
 while game_continues:
     answer = screen.textinput(title=f"Guessed {len(correct_answers)} states of 50", prompt="Enter the state:")
-    if answer.lower() in dataset['state'].values:
+    if answer.title() in dataset['state'].values:
         correct_answers.add(answer)
-        twix.setposition(x=int(dataset[dataset['state'] == answer]['x']), y=int(dataset[dataset['state'] == answer]['y']))
-        twix.write(arg=answer)
+        twix.setposition(x=int(dataset[dataset['state'] == answer.title()]['x']), y=int(dataset[dataset['state'] == answer.title()]['y']))
+        twix.write(arg=answer.title())
     elif answer.lower() == "exit":
         game_continues = False
     else:
-        misses.add(answer.lower())
+        misses.add(answer.title())
     if len(correct_answers) == 50:
         game_continues = False
 
