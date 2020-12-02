@@ -20,7 +20,7 @@ misses = set()
 
 game_continues = True
 while game_continues:
-    answer = screen.textinput(title="Guess the states", prompt="Enter the state:")
+    answer = screen.textinput(title=f"Guessed {len(correct_answers)} states of 50", prompt="Enter the state:")
     if answer.lower() in dataset['state'].values:
         correct_answers.add(answer)
         twix.setposition(x=int(dataset[dataset['state'] == answer]['x']), y=int(dataset[dataset['state'] == answer]['y']))
